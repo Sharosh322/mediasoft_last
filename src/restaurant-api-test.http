@@ -1,0 +1,64 @@
+### 1. Создать посетителя
+POST http://localhost:8080/api/visitors
+Content-Type: application/json
+
+{
+  "name": "Анна Петрова",
+  "age": 25,
+  "gender": "Женский"
+}
+
+### 2. Создать анонимного посетителя
+POST http://localhost:8080/api/visitors
+Content-Type: application/json
+
+{
+  "age": 30,
+  "gender": "Мужской"
+}
+
+### 3. Создать ресторан
+POST http://localhost:8080/api/restaurants
+Content-Type: application/json
+
+{
+  "name": "Pasta Paradise",
+  "description": "Лучшая паста в городе",
+  "cuisineType": "ITALIAN",
+  "averageBill": 1200.00
+}
+
+### 4. Создать отзыв. Составной ключ: visitorId + restaurantId
+POST http://localhost:8080/api/reviews
+Content-Type: application/json
+
+{
+  "visitorId": 1,
+  "restaurantId": 1,
+  "rating": 5,
+  "reviewText": "Отличный ресторан"
+}
+
+### 5. Получить всех посетителей
+GET http://localhost:8080/api/visitors
+
+### 6. Получить все рестораны
+GET http://localhost:8080/api/restaurants
+
+### 7. Получить отзывы постранично, сначала высокие оценки
+GET http://localhost:8080/api/reviews/page?page=0&size=5&direction=desc
+
+### 8. Получить отзывы ресторана постранично, сначала низкие оценки
+GET http://localhost:8080/api/reviews/restaurant/1/page?page=0&size=5&direction=asc
+
+### 9. Получить один отзыв по составному ключу
+GET http://localhost:8080/api/reviews/1/1
+
+### 10. Найти рестораны с рейтингом не меньше 4.0 через имя метода
+GET http://localhost:8080/api/restaurants/rating/method-name?minRating=4.0
+
+### 11. Найти рестораны с рейтингом не меньше 4.0 через JPQL
+GET http://localhost:8080/api/restaurants/rating/jpql?minRating=4.0
+
+### 12. Удалить отзыв по составному ключу
+DELETE http://localhost:8080/api/reviews/1/1
